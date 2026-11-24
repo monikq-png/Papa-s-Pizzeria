@@ -67,10 +67,17 @@ add_library(${MAIN_LIBRARY_NAME} STATIC)
 add_executable(${MAIN_EXECUTABLE_NAME}
     app/main.cpp
 )
+
 target_sources(${MAIN_LIBRARY_NAME}
     PRIVATE
-        src/Example.cpp
-        src/internal/Detail.cpp
+        src/Ingredient.cpp
+        src/Pizza.cpp
+        src/Customer.cpp
+        src/Order.cpp
+        src/Oven.cpp
+        src/Game.cpp
+        src/Services.cpp 
+        src/Console.cpp
 )
 
 # NOTE: Add all defined targets (e.g. executables, libraries, etc. )
@@ -81,59 +88,9 @@ set_compiler_flags(RUN_SANITIZERS ${USE_ASAN} TARGET_NAMES ${MAIN_EXECUTABLE_NAM
 
 # Configure includes
 
-# app/ needs no include dir of its own: it inherits include/ by linking the library
-target_include_directories(${MAIN_LIBRARY_NAME} PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+# app/ needs no include dir of its own:
+
+target_link_libraries(${MAIN_EXECUTABLE_NAME}
+    PRIVATE
+        ${MAIN_LIBRARY_NAME}
 )
-target_include_directories(${MAIN_LIBRARY_NAME} PRIVATE
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
-)
-
-# use SYSTEM so cppcheck and clang-tidy do not report warnings from these directories
-# vendored external deps should be private by default
-# a public dep is an interface commitment, shared by app/ and tests/
-target_include_directories(${MAIN_LIBRARY_NAME} SYSTEM PUBLIC
-    ${EXT_PUBLIC_DIR}
-)
-target_include_directories(${MAIN_LIBRARY_NAME} SYSTEM PRIVATE
-    ${EXT_PRIVATE_DIR}
-)
-
-# target_include_directories(${MAIN_EXECUTABLE_NAME} SYSTEM PRIVATE ${<SomeLib>_SOURCE_DIR}/include)
-
-###############################################################################
-
-# Link libraries
-
-target_link_libraries(${MAIN_EXECUTABLE_NAME} PRIVATE ${MAIN_LIBRARY_NAME})
-
-# target_link_directories(${MAIN_EXECUTABLE_NAME} PRIVATE ${<SomeLib>_BINARY_DIR}/lib)
-# target_link_libraries(${MAIN_EXECUTABLE_NAME} <SomeLib>)
-
-###############################################################################
-
-# copy binaries to "bin" folder; these are uploaded as artifacts on each release
-# DESTINATION_DIR is set as "bin" in cmake/Options.cmake
-install(TARGETS ${MAIN_EXECUTABLE_NAME} DESTINATION ${DESTINATION_DIR})
-install(TARGETS ${MAIN_LIBRARY_NAME} ARCHIVE DESTINATION lib)
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
-    DESTINATION include
-    FILES_MATCHING
-        PATTERN "*.h"
-        PATTERN "*.hpp"
-)
-if(APPLE)
-    install(FILES ${CMAKE_SOURCE_DIR}/launcher.command DESTINATION ${DESTINATION_DIR})
-endif()
-
-copy_files(FILES tastatura.txt DIRECTORY assets COPY_TO_DESTINATION TARGET_NAME ${MAIN_EXECUTABLE_NAME})
-# copy_files(FILES tastatura.txt config.json DIRECTORY images sounds COPY_TO_DESTINATION TARGET_NAME ${MAIN_EXECUTABLE_NAME})
-# copy_files(DIRECTORY images sounds COPY_TO_DESTINATION TARGET_NAME ${MAIN_EXECUTABLE_NAME})
-
-###############################################################################
-
-# Tests; BUILD_TESTING is declared in cmake/Options.cmake, include(CTest) enables it. No framework on main
-
-if(BUILD_TESTING)
-    add_subdirectory(tests)
-endif()
