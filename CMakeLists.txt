@@ -94,3 +94,7 @@ target_link_libraries(${MAIN_EXECUTABLE_NAME}
     PRIVATE
         ${MAIN_LIBRARY_NAME}
 )
+
+install(TARGETS ${MAIN_EXECUTABLE_NAME}
+    RUNTIME DESTINATION bin
+)
