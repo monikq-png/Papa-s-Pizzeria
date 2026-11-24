@@ -21,7 +21,9 @@ namespace Services
         const std::vector<Pizza>& allRecipes);
 
     double getIngredientAccuracy(const Pizza& requestedPizza, const Pizza& actualPizza);
-        
+    
+    bool hasIngredient(const std::vector<Ingredient>& ingredients, const std::string& ingredientName);
+
     double getOvenAccuracy(const Pizza& requestedPizza, const Oven& oven);
 
     double getIngredientSpeedAccuracy(double expectedPlacingTime, double actualPlacingTime);

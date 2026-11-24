@@ -34,7 +34,8 @@ namespace Services {
         return Order(customer, dailyMenu[indexPizza], orderId);
     }
 
-    bool hasIngredient(const std::vector<Ingredient>& ingredients, const std::string& ingredientName) {
+    bool hasIngredient(const std::vector<Ingredient>& ingredients, const std::string& ingredientName) 
+    {
         for (const auto& ingredient : ingredients) {
             if (ingredient.getName() == ingredientName) 
                 return true; 

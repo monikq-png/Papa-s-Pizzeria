@@ -68,6 +68,10 @@ add_executable(${MAIN_EXECUTABLE_NAME}
     app/main.cpp
 )
 
+if(BUILD_TESTING)
+    add_subdirectory(tests)
+endif()
+
 target_sources(${MAIN_LIBRARY_NAME}
     PRIVATE
         src/Ingredient.cpp
