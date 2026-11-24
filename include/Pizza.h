@@ -16,7 +16,7 @@ public:
     Pizza();
     Pizza(const std::string& recipeName, int idealBakeTime, double totalPrice);
 
-    void addIngredient(const Ingredient& ing);
+    void addIngredient(const Ingredient& ingredient);
 
     int getIdealBakeTime() const; 
 

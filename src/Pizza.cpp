@@ -25,7 +25,7 @@ int Pizza::getIdealBakeTime() const
 
 double Pizza::getIngredientPlacingTime() const {
     double totalPlacingTime = 0.0;
-    for (const Ingredient& ingredient : ingredients) {
+    for (int i = 0; i < ingredients.size(); i++) {
         totalPlacingTime += 2; // presupunem ca fiecare ingredent dureaza vreo 2 s sa fie tastat
     }
     return totalPlacingTime;

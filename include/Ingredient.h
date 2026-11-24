@@ -5,9 +5,9 @@
 
 class Ingredient {
 private:
+    std::string name;
     int bakeTime;
     double price;
-    std::string name;
 public:
     Ingredient();
     Ingredient(const std::string& name, int bakeTime, double price);
