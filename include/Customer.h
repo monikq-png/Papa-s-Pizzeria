@@ -13,7 +13,7 @@ public:
     Customer();
     Customer(const std::string& name, double tolerance);
 
-    std::string getName() const;
+    const std::string& getName() const;
 
     double getTolerance() const;
 

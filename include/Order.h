@@ -20,8 +20,6 @@ public:
     ~Order(); // !!!!!!!!!!!!!!!!!!
 
     const Pizza& getPizza() const;
-    
-    const Customer& getCustomer() const;
 
     friend std::ostream& operator<<(std::ostream& os, const Order& order);
 };

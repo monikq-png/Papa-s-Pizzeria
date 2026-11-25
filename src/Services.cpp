@@ -15,11 +15,11 @@ namespace Services {
 
     Customer getRandomCustomer()
     {
-        std::string names[] = {"Stefan", "Maria", "Atasiei", "Ioana", "Alex", "Elena", 
+        const std::string names[] = {"Stefan", "Maria", "Atasiei", "Ioana", "Alex", "Elena", 
             "Mihai", "Ana", "Vlad", "Gabriela", "Cristian", "Monica", "Florin", "Alina", "Darius", "Simona",
             "Bogdan", "Camelia", "Radu", "Adriana", "George", "Xenia", "Patricia", "Lucian"};
 
-        double tolerance[] = {0.5, 0.75, 1.0, 1.0, 1.0, 1.25, 1.5}; 
+        const double tolerance[] = {0.5, 0.75, 1.0, 1.0, 1.0, 1.25, 1.5}; 
         // maresc sansele de a avea toleranta 1.0, pentru ca e cea mai comuna
 
         int indexNames = std::rand() % 24;

@@ -69,7 +69,7 @@ int main() {
 
     std::vector<Pizza> allRecipes = {margherita, pepperoniPizza, funghi, capricciosa, prosciutto};
 
-    // meniu ziua 1: doar Margherita disponibila
+    // meniu ziua 1, doar Margherita disponibila
     std::vector<Pizza> dayOneMenu = Services::getDailyMenu(unlockedIngredients, allRecipes);
     assert(dayOneMenu.size() == 1);
     assert(dayOneMenu[0].getRecipeName() == "Margherita");

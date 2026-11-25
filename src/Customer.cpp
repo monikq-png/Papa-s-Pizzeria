@@ -9,7 +9,7 @@ Customer::Customer(const std::string& name, double tolerance)
     this->tolerance = tolerance;   
 }
 
-std::string Customer::getName() const {
+const std::string& Customer::getName() const {
     return name;
 }
 

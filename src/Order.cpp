@@ -27,10 +27,6 @@ const Pizza& Order::getPizza() const {
     return requestedPizza;
 }
 
-const Customer& Order::getCustomer() const {
-    return customer;
-}
-
 std::ostream& operator<<(std::ostream& os, const Order& order) {
     os << "ORDER #" << order.orderId;
     return os;

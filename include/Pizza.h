@@ -22,7 +22,7 @@ public:
 
     double getTotalPrice() const;
 
-    std::string getRecipeName() const;
+    std::string& getRecipeName() const;
 
     const std::vector<Ingredient>& getIngredients() const;
 
