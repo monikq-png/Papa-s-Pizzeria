@@ -9,8 +9,8 @@ class Pizza {
 private:
     std::string recipeName;
     std::vector<Ingredient> ingredients;
-    double totalPrice;
     int idealBakeTime; 
+    double totalPrice;
 
 public:
     Pizza();
@@ -22,7 +22,7 @@ public:
 
     double getTotalPrice() const;
 
-    std::string& getRecipeName() const;
+    const std::string& getRecipeName() const;
 
     const std::vector<Ingredient>& getIngredients() const;
 
