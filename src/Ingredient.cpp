@@ -10,7 +10,7 @@ Ingredient::Ingredient(const std::string& name, int bakeTime, double price)
     this->price = price;
 }
 
-std::string Ingredient::getName() const {
+const std::string& Ingredient::getName() const {
     return name;
 }
 

@@ -12,7 +12,7 @@ public:
     Ingredient();
     Ingredient(const std::string& name, int bakeTime, double price);
 
-    std::string getName() const;
+    const std::string& getName() const;
 
     int getBakeTime() const;
 
